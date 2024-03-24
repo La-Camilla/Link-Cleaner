@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#input-field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    align-items: center;
+}
+
+#input-field > * {
+    margin: 5px;
+}
+
+#output {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#output > * {
+    margin: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    width: 30%;
+}
+
