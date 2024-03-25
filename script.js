@@ -5,7 +5,7 @@ const clearButton = document.getElementById('clear-button');
 const copyButton = document.getElementById('copy-button');
 
 function nofollowRemover(code) {
-    const regex = /\snofollow/g;
+    const regex = /rel="((noopener noreferrer nofollow)|(noopener nofollow noreferrer)|(noreferrer noopener nofollow)|(noreferrer nofollow noopener)|(nofollow noopener noreferrer)|(nofollow noreferrer noopener))"/g;
     const newCode = code.replace(regex, '');
     output.textContent = newCode;
 }
