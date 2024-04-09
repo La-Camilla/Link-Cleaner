@@ -5,9 +5,11 @@ const clearButton = document.getElementById('clear-button');
 const copyButton = document.getElementById('copy-button');
 
 function nofollowRemover(code) {
-    const regex = /rel="((noopener noreferrer nofollow)|(noopener nofollow noreferrer)|(noreferrer noopener nofollow)|(noreferrer nofollow noopener)|(nofollow noopener noreferrer)|(nofollow noreferrer noopener))"/g;
+    const regex = /noopener|noreferrer|nofollow|_blank/g;
     const newCode = code.replace(regex, '');
-    output.textContent = newCode;
+    const regex2 = /(target="?([\s]{0,})"|rel="?([\s]{0,})")\s/g;
+    const cleaned = newCode.replace(regex2, '');
+    output.textContent = cleaned;
 }
 
 function clear() {
@@ -16,12 +18,11 @@ function clear() {
     return;
 }
 
-function copy(copyCode) {
-    copyCode.select();
-    copyCode.setSelectionRange(0, 99999);
-    document.execCommand('copy');
+async function copy(copyCode) {
+    await navigator.clipboard.writeText(copyCode.value);
 }
 
 submitButton.addEventListener('click', () => nofollowRemover(userCode.value));
+userCode.addEventListener('input', () => nofollowRemover(userCode.value));
 clearButton.addEventListener('click', clear);
 copyButton.addEventListener('click', () => copy(output));
